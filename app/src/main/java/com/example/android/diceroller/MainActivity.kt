@@ -32,10 +32,13 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     lateinit var diceImage: ImageView
+    lateinit var diceImage2: ImageView
+    lateinit var sum: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         diceImage = findViewById(R.id.dice_image)
+        diceImage2 = findViewById(R.id.dice_image2)
         // Get the Button view from the layout and assign a click
         // listener to it.
         val rollButton: Button = findViewById(R.id.roll_button)
@@ -46,11 +49,11 @@ class MainActivity : AppCompatActivity() {
      * Click listener for the Roll button.
      */
     private fun rollDice() {
-        // Toast.makeText(this, "button clicked",
-        //  Toast.LENGTH_SHORT).show()
-        val randomInt = (1..6).random()
+        Toast.makeText(this, "Parnika Kaur(18WMR12128I)",
+        Toast.LENGTH_SHORT).show()
 
-        val drawableResource :Int = when (randomInt){
+        val first = getRandomDiceNumber()
+        val drawableResource1 :Int = when (first){
             1 -> R.drawable.dice_1
             2 -> R.drawable.dice_2
             3 -> R.drawable.dice_3
@@ -59,7 +62,31 @@ class MainActivity : AppCompatActivity() {
             else -> R.drawable.dice_6
         }
 
-        diceImage.setImageResource(drawableResource)
+        val second = getRandomDiceNumber()
+        val drawableResource2 :Int = when (second){
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+
+        diceImage.setImageResource(drawableResource1)
+        diceImage2.setImageResource(drawableResource2)
+
+
+        val addition = first + second
+
+        val result: TextView = findViewById(R.id.sum)
+        result.setText(addition.toString())
 
     }
+
+    private fun getRandomDiceNumber() : Int {
+        val randomInt = (1..6).random()
+
+        return (randomInt)
+    }
+
 }
